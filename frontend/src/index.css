@@ -3,20 +3,18 @@
    License: none (public domain)
 */
 
-
-
 @font-face {
-  font-family: 'ProductSans-Bold';
-  src: url('./assets/product_sans_bold-webfont.woff2') format('woff2'),
-       url('./assets/product_sans_bold-webfont.woff') format('woff');
+  font-family: "ProductSans-Bold";
+  src: url("./assets/product_sans_bold-webfont.woff2") format("woff2"),
+    url("./assets/product_sans_bold-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'ProductSans-Regular';
-  src: url('./assets/product_sans_regular-webfont.woff2') format('woff2'),
-       url('./assets/product_sans_regular-webfont.woff') format('woff');
+  font-family: "ProductSans-Regular";
+  src: url("./assets/product_sans_regular-webfont.woff2") format("woff2"),
+    url("./assets/product_sans_regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -103,46 +101,23 @@ audio,
 video {
   margin: 0;
   padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
-}
-
-body {
-  line-height: 1;
-}
-
-ol,
-ul {
-  list-style: none;
-}
-
-blockquote,
-q {
-  quotes: none;
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: '';
+  content: "";
   content: none;
 }
 
@@ -151,37 +126,36 @@ table {
   border-spacing: 0;
 }
 
-
-.heading{
+.heading {
   font-family: "ProductSans-Bold";
   font-size: 1.5em;
-  color: #FF0086;
+  color: #ff0086;
 }
 
-.title{
+.title {
   font-family: "Nunito Sans";
   font-weight: 700;
-  line-height:1.5em;
+  line-height: 1.5em;
   font-size: 1em;
   color: #000000;
 }
 
-.body{
+.body {
   font-family: "Nunito Sans";
   font-size: 14px;
   color: #666666;
 }
 
-.button{
+.button {
   width: 100%;
-  background: #FF0086;
+  background: #ff0086;
   border-radius: 2px;
   font-family: "ProductSans-Bold";
   font-size: 18px;
-  color: #FFFFFF;
+  color: #ffffff;
   letter-spacing: 0.56px;
   text-align: center;
-  padding:16px;
+  padding: 16px;
   outline: none;
   border: none;
 }
