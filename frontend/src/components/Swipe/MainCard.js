@@ -13,7 +13,7 @@ const appStyles = {
   minHeight: "100vh",
   fontFamily: "sans-serif",
   overflow: "hidden",
-  padding: 24
+  padding: 24,
 };
 
 const wrapperStyles = { position: "relative", width: "100%", height: "350px" };

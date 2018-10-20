@@ -1,9 +1,11 @@
 import React from "react";
+import cardBackground from "../../assets/cardbg.svg"
+import testImage from "../../assets/test.png"
 
 const cardStyles = {
   background: "whitesmoke",
   borderRadius: 3,
-  width: "100%",
+  width: "90%",
   height: "350px",
   cursor: "pointer",
   userSelect: "none",
@@ -13,16 +15,38 @@ const cardStyles = {
   justifyContent: "center",
   top: 0,
   background: "#FFFFFF",
+  overflow: "hidden",
   boxShadow: "0 3px 6px 0 rgba(199,199,199,0.50)"
 };
 
 const bgImage = {
-url: ""
+position: "absolute",
+top: 0,
+zIndex: -99
+}
+
+const fullWidth = {
+width:"100%"
 }
 
 const image = {
   textAlign: "center",
-  filter: "blur(10px)"
+  position: "relative",
+  left: -100,
+  top: 0,
+  zIndex: -3
+}
+
+const blur = {
+  filter: "blur(8px)",
+  position: "relative",
+  top: 0,
+  left: 100,
+  zIndex: 3
+}
+
+const below = {
+  position: "absolute"
 }
 
 const info = {
@@ -76,10 +100,13 @@ const divider = {
 
 const Card = ({ zIndex = 0, children }) => (
   <div style={{ ...cardStyles, zIndex }}>
-    <div style={bgImage}></div>
+    <div style={bgImage}>
+      <img src={cardBackground} style={fullWidth}/>
+    </div>
     <div style={info}>
       <div style={image}>
-        <img src="../../assets/test.png"/>
+        <img src={testImage} style={blur}/>
+        <img src={testImage} style={below}/>
       </div>
       <div style={label1}>I am a</div>
       <div style={body}>Avid Trekker and Hobbyist Rapper</div>

@@ -7,6 +7,7 @@ import { fetch_success } from "../actions/set_login";
 
 class Register extends Component {
   login = response => {
+    console.log(process.env.REACT_APP_URL)
     axios
       .post(`${process.env.REACT_APP_URL}/api/login`, {
         token: response.accessToken,
