@@ -7,13 +7,15 @@ import { set_login } from "../actions/set_login";
 class Register extends Component {
   login = response => {
     console.log(response);
-    //api call to send token, return newUser?
+    // TODO api call to send token, return newUser?
+    let newUser = true;
     if (newUser) {
-      //nav to details
+      this.props.navToDetails();
     } else {
-      //action create set_loggedin
+      this.props.setLogin();
     }
   };
+
   render() {
     return <RegisterP login={this.login} />;
   }
@@ -28,7 +30,7 @@ const mapStatetoProps = (state, props) => {
 const mapActionstoProps = (dispatch, props) => {
   return bindActionCreators(
     {
-      onLogin: set_login
+      setLogin: set_login
     },
     dispatch
   );

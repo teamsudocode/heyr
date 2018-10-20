@@ -4,12 +4,26 @@ class Detail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      interests: ["Cricket", "Politics", "Sports", "Music", "Football", "Hollywood", "Anime",  "Programming", "Pop Culture", "Travelling", "Life", "Writing", "Reading"]
+      interests: [
+        "Cricket",
+        "Politics",
+        "Sports",
+        "Music",
+        "Football",
+        "Hollywood",
+        "Anime",
+        "Programming",
+        "Pop Culture",
+        "Travelling",
+        "Life",
+        "Writing",
+        "Reading"
+      ]
     };
   }
 
   componentDidMount() {
-    //fetch list of interest and update state
+    // TODO fetch list of interest and update state
   }
   render() {
     return <DetailP interests={this.state.interests} />;

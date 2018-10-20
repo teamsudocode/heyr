@@ -5,21 +5,19 @@ import Detail from "./container/Detail";
 
 class Index extends Component {
   constructor(props) {
+    super(props);
     this.state = {
       showdetail: false
     };
   }
 
-  changeDetails = () => {
+  navToDetails = () => {
     this.setState({ showdetail: true });
   };
 
   render() {
-    this.state.details ? (
-      <Detail />
-    ) : (
-      <Register navToDetails={this.changeDetails} />
-    );
+    if (this.state.showdetail) return <Detail />;
+    else return <Register navToDetails={this.navToDetails} />;
   }
 }
 
