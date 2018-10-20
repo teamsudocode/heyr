@@ -5,9 +5,7 @@ export function set_login(token) {
     axios
       .get(`${process.env.REACT_APP_URL || ""}/api/facebookLogin`)
       .then(function(response) {
-        console.log(response);
-        let user_id = response.userID;
-        dispatch(fetch_success(user_id));
+        dispatch(fetch_success());
       })
       .catch(function(error) {
         console.log(error);
@@ -16,11 +14,10 @@ export function set_login(token) {
   };
 }
 
-export function fetch_success(user_id) {
+export function fetch_success() {
   return {
     type: "SET_LOGGED",
-    isLogged: true,
-    userId: user_id
+    isLogged: true
   };
 }
 

@@ -30,12 +30,18 @@ class Detail extends Component {
   };
 
   updateDetails = () => {
-    // TODO make api call
-    let payload = {
-      interests: this.state.selectedInterest,
-      bio: this.state.bio
-    };
-    console.log(payload);
+    axios
+      .post(`${process.env.REACT_APP_URL}/api/user/update_details`, {
+        user_id: localStorage.getItem("user_id"),
+        interests: this.state.selectedInterest,
+        bio: this.state.bio
+      })
+      .then(response => {
+        this.props.setLogin();
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
     this.props.setLogin();
   };
 

@@ -1,4 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 
-const Index = () => <div>hello</div>;
+class Index extends Component {
+  render() {
+    return <div>disocv</div>;
+  }
+}
+
 export default Index;

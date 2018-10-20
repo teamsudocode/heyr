@@ -7,25 +7,23 @@ import { fetch_success } from "../actions/set_login";
 
 class Register extends Component {
   login = response => {
-    console.log(response);
     axios
       .post(`${process.env.REACT_APP_URL}/api/login`, {
         token: response.accessToken,
         user_id: response.userID
       })
-      .then(function(response) {
-        console.log(response);
+      .then(response => {
+        localStorage.setItem("user_id", response.data.user.id);
+        let newUser = response.data.exists;
+        if (!newUser) {
+          this.props.navToDetails();
+        } else {
+          this.props.setLogin();
+        }
       })
       .catch(function(error) {
         console.log(error);
       });
-    // TODO api call to send token, return newUser?
-    let newUser = true;
-    if (newUser) {
-      this.props.navToDetails();
-    } else {
-      this.props.setLogin();
-    }
   };
 
   render() {

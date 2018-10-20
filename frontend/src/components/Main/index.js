@@ -7,7 +7,11 @@ import Home from "../Home";
 
 class Index extends Component {
   render() {
-    return this.props.ui.isLogged ? <Home /> : <Login />;
+    return this.props.ui.isLogged || localStorage.getItem("user_id") ? (
+      <Home />
+    ) : (
+      <Login />
+    );
   }
 }
 

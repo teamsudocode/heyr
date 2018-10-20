@@ -1,14 +1,21 @@
-import React from "react";
-import Icon from "./Icon";
+import React, { Component } from "react";
+import { css } from "emotion";
 import explorecolor from "../../../assets/explore-color.svg";
 import explore from "../../../assets/explore.svg";
 
-const Explore = props => {
-  if (props.active === true) {
-    return <Icon src={explorecolor} />;
-  } else {
-    return <Icon src={explore} />;
+import { history } from "../../Home";
+
+class Explore extends Component {
+  nav = () => {
+    history.push("/explore");
+  };
+  render() {
+    if (this.props.active === "chat") {
+      return <img onClick={this.nav} alt="icon" src={explore} />;
+    } else {
+      return <img onClick={this.nav} alt="icon" src={explorecolor} />;
+    }
   }
-};
+}
 
 export default Explore;

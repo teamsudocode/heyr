@@ -1,35 +1,39 @@
 import React, { Component } from "react";
 import { css } from "emotion";
-import Icon from "../presentational/Icon";
-
-import homecolor from "../../../assets/home-color.svg";
-import convocolor from "../../../assets/convo-color.svg";
-import explorecolor from "../../../assets/explore-color.svg";
-import home from "../../../assets/home.svg";
-import convo from "../../../assets/convo.svg";
-import explore from "../../../assets/explore.svg";
+import Chat from "../presentational/Chat";
+import Explore from "../presentational/Explore";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import Discover from "../presentational/Discover";
 
 class BottomBar extends Component {
-  renderIcons = () => {
+  onNav = active => {
+    this.props.onChangeActive(active);
+  };
+
+  render() {
+    let active = "chat",
+      newMessage = false;
     return (
       <div>
-        <Icon src="home-color.svg" />
+        <Chat onNav={this.onNav} active={active} />
+        <Discover onNav={this.onNav} newMessage={newMessage} active={active} />
+        <Explore onNav={this.onNav} active={active} />
       </div>
     );
-  };
-  render() {
-    <div class="bottombar">
-      <div class="nav">
-        <div>
-          <Icon src="home-color.svg" />
-        </div>
-        <div>
-          <Icon src="convo.svg" />
-        </div>
-        <div>
-          <Icon src="explore.svg" />
-        </div>
-      </div>
-    </div>;
   }
 }
+
+const mapStatetoProps = (state, props) => {
+  return {
+    medic: state.ui,
+    ...props
+  };
+};
+const mapActionstoProps = (dispatch, props) => {
+  return bindActionCreators({}, dispatch);
+};
+export default connect(
+  mapStatetoProps,
+  mapActionstoProps
+)(BottomBar);

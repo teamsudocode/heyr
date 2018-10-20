@@ -1,4 +1,5 @@
 import React from "react";
+import BottomBar from "./container/BottomBar";
 
-const Index = () => <div>hello hi</div>;
+const Index = () => <BottomBar />;
 export default Index;

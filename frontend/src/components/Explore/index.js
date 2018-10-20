@@ -1,4 +1,4 @@
 import React from "react";
 
-const Index = () => <div>hello</div>;
+const Index = () => <div>Explore</div>;
 export default Index;

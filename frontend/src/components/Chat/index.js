@@ -1,4 +1,10 @@
-import React from "react";
+import React, { Fragment, PureComponent } from "react";
+import { Route, Switch } from "react-router-dom";
 
-const Index = () => <div>hello</div>;
+class Index extends PureComponent {
+  render() {
+    return <div>chat</div>;
+  }
+}
+
 export default Index;
