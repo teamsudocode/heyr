@@ -6,17 +6,20 @@ import (
 )
 
 type User struct {
-	ID           bson.ObjectId `bson:"_id,omitempty" json:"_id,omitempty"`
-	FBID         string        `bson:"fb_id" json:"fb_id"`
-	FirstName    string        `bson:"first_name" json:"first_name"`
-	LastName     string        `bson:"last_name" json:"last_name"`
-	FullName     string        `bson:"full_name" json:"full_name"`
-	Birthday     time.Time     `bson:"birthday" json:"birthday"`
-	Email        string        `bson:"email" json:"email"`
-	Interests    []string      `bson:"interests" json:"interests"`
-	Bio          string        `bson:"bio" json:"bio"`
-	IsActive     bool          `bson:"is_active" json:"is_active"`
-	LastLocation TLastLocation `bson:"last_location" json:"last_location"`
+	ObjID         bson.ObjectId `bson:"_id,omitempty" json:"-,omitempty"`
+	ID            string        `bson:"id" json:"id"`
+	Name          string        `bson:"name" json:"name"`
+	FirstName     string        `bson:"first_name" json:"first_name"`
+	LastName      string        `bson:"last_name" json:"last_name"`
+	Birthday      string        `bson:"birthday" json:"birthday"`
+	Email         string        `bson:"email" json:"email"`
+	Gender        string        `bson:"string" json:"string"`
+	Hometown      string        `bson:"hometown" json:"hometown"`
+	ProfilePicUrl string        `bson:"profile_pic" json:"profile_pic"`
+	Interests     []string      `bson:"interests" json:"interests"`
+	Bio           string        `bson:"bio" json:"bio"`
+	IsActive      bool          `bson:"is_active" json:"is_active"`
+	LastLocation  TLastLocation `bson:"last_location" json:"last_location"`
 }
 
 type Connection struct {
