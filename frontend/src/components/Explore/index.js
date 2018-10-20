@@ -1,4 +1,4 @@
 import React from "react";
-
-const Index = () => <div>Explore</div>;
+import ExploreList from "./container/ExploreList";
+const Index = () => <ExploreList />;
 export default Index;

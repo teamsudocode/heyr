@@ -52,7 +52,7 @@ class HeadBar extends Component {
 export default HeadBar;
 
 const styles = css`
-  padding: 1.5em;
+  padding: 1.5em 1.5em 0 1.5em;
   .buttongroup {
     display: flex;
     flex-direction: row;
