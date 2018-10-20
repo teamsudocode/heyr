@@ -1,10 +1,6 @@
 import React, { Component } from "react";
-import RegisterP from "../container/Register";
+import RegisterP from "../presentational/Register";
 class Register extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return <RegisterP />;
   }

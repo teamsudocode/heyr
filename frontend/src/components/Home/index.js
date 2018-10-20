@@ -1,8 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Login from "../Login";
-const Index = () => (
-  <Fragment>
-    <Login />
-  </Fragment>
-);
+const Index = () => <Login />;
 export default Index;

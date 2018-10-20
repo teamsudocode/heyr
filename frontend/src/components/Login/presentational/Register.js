@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
 import { css } from "emotion";
+import FacebookLogin from "react-facebook-login";
 
 import bicycleimage from "../../../assets/bicycle_full.png";
 import locationimage from "../../../assets/location.png";
 
 class Register extends Component {
-  componentDidMount() {}
   render() {
     return (
       <div className={styles}>
@@ -19,12 +19,12 @@ class Register extends Component {
           <span className="heyr">heyr</span>
         </span>
         <div />
-        {/* <FacebookLogin
+        <FacebookLogin
           appId="193448981230282"
           autoLoad={true}
           fields="name,email,picture"
           callback={this.props.login}
-        /> */}
+        />
         <span className="Easily-Catch-up-with">
           Easily Catch up with Like Minded People Nearby
         </span>
