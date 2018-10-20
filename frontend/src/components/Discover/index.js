@@ -31,7 +31,7 @@ class Index extends Component {
       axios
         .post(`${process.env.REACT_APP_URL}/api/people_around`, body)
         .then(response => {
-          this.setState({ people: response.data });
+          this.setState({ people: response.data.nearme });
         })
         .catch(function(error) {
           console.log(error);
