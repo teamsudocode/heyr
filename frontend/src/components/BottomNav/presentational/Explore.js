@@ -8,12 +8,13 @@ import { history } from "../../Home";
 class Explore extends Component {
   nav = () => {
     history.push("/explore");
+    this.props.onNav("explore");
   };
   render() {
-    if (this.props.active === "chat") {
-      return <img onClick={this.nav} alt="icon" src={explore} />;
-    } else {
+    if (this.props.active === "explore") {
       return <img onClick={this.nav} alt="icon" src={explorecolor} />;
+    } else {
+      return <img onClick={this.nav} alt="icon" src={explore} />;
     }
   }
 }

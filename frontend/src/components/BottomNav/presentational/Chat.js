@@ -10,12 +10,13 @@ class Chat extends Component {
   }
   nav = () => {
     history.push("/chat");
+    this.props.onNav("chat");
   };
   render() {
     if (this.props.active === "chat") {
-      return <img onClick={this.nav} alt="icon" src={convo} />;
-    } else {
       return <img onClick={this.nav} alt="icon" src={convocolor} />;
+    } else {
+      return <img onClick={this.nav} alt="icon" src={convo} />;
     }
   }
 }

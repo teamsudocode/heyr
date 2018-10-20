@@ -1,4 +1,4 @@
-const axios = require("axios");
+import axios from "axios";
 
 export function set_login(token) {
   return (dispatch, getState) => {

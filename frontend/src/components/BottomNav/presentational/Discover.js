@@ -7,12 +7,13 @@ import { history } from "../../Home/index";
 class Discover extends Component {
   nav = () => {
     history.push("/");
+    this.props.onNav("discover");
   };
   render() {
-    if (this.props.active === "chat") {
-      return <img onClick={this.nav} alt="icon" src={home} />;
+    if (this.props.active === "discover") {
+      return <img onClick={this.nav} alt="icon" src={homecolor} />;
     } else {
-      return <img alt="icon" src={homecolor} />;
+      return <img onClick={this.nav} alt="icon" src={home} />;
     }
   }
 }

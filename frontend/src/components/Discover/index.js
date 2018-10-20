@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-
+import Swipe from "../Swipe";
 class Index extends Component {
   render() {
-    return <div>disocv</div>;
+    return <Swipe />;
   }
 }
 
