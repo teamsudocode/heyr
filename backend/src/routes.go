@@ -12,8 +12,12 @@ import (
 
 var DB *mgo.Database
 
+// swipes made by a user
+var Swipes map[string]([]string)
+
 func NewRouter() *gin.Engine {
 	router := gin.Default()
+	router.LoadHTMLFiles("index.html")
 	router.Use(cors.Default())
 	api := router.Group("/api")
 	{
@@ -21,9 +25,17 @@ func NewRouter() *gin.Engine {
 		api.POST("/login", PerformFBLogin)
 		api.POST("/user/update_details", UpdateUserDetails)
 		api.POST("/user/update_active", UpdateUserActiveState)
+		api.POST("/user/swipe", MarkSwipe)
 		api.GET("/all_interests", GetAllInterests)
 
-		api.GET("/people_around", GetPeopleAround)
+		api.POST("/people_around", GetPeopleAround)
+
+		api.GET("/chat", func(c *gin.Context) {
+			ChatHandler(c.Writer, c.Request)
+		})
+		api.GET("/somechat", func(c *gin.Context) {
+			c.HTML(http.StatusOK, "index.html", nil)
+		})
 	}
 	return router
 }
@@ -32,6 +44,23 @@ func SayAlive(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"status": "I'm alive!",
 	})
+}
+
+func MarkSwipe(c *gin.Context) {
+	reqJson := struct {
+		Token   string `json:"token"`
+		UserID  string `json:"user_id" binding:"required"`
+		MarkFor string `json:"mark_for" binding:"required"`
+	}{}
+	if err := c.ShouldBindJSON(&reqJson); err != nil {
+		log.Println("Error", err)
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
+			"message": "Missing request parameters",
+		})
+		return
+	}
+	Swipes[reqJson.UserID] = append(Swipes[reqJson.UserID], reqJson.MarkFor)
+	c.JSON(http.StatusOK, gin.H{"message": "Done"})
 }
 
 func UpdateUserActiveState(c *gin.Context) {
@@ -94,8 +123,37 @@ func GetPeopleAround(c *gin.Context) {
 		return
 	}
 
+	// mark me available
+	me := User{}
+	err := DB.C("users").Find(bson.M{"id": reqJson.UserID}).One(&me)
+	if err == mgo.ErrNotFound {
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
+			"message": "User not found",
+		})
+		return
+	}
+
+	me.LastLocation = TLastLocation{
+		UpdatedAt: time.Now(),
+		Location: GeoJson{
+			Type:        "Point",
+			Coordinates: reqJson.Coordinates,
+		},
+	}
+	me.IsActive = true
+
+	err = DB.C("users").UpdateId(me.ObjID, &me)
+	if err != nil {
+		log.Println("Error while updating active state", err)
+		c.AbortWithStatusJSON(http.StatusBadGateway, gin.H{
+			"message": "Failed to update active state",
+		})
+		return
+	}
+
+	// get people around me
 	nearme := []User{}
-	err := DB.C("users").Find(bson.M{
+	err = DB.C("users").Find(bson.M{
 		"last_location.location": bson.M{
 			"$near": bson.M{
 				"$geometry": bson.M{
@@ -105,7 +163,23 @@ func GetPeopleAround(c *gin.Context) {
 				"$maxDistance": 100,
 			},
 		},
+		// "is_active": true,
+		// "id": bson.M{
+		// 	"$not": reqJson.UserID,
+		// TODO: filter by last_location updated at time
+		// },
 	}).All(&nearme)
+
+	// get list of people swiped by
+	swipedBy := []string{}
+	for a := range Swipes {
+		for _, b := range Swipes[a] {
+			if b == reqJson.UserID {
+				swipedBy = append(swipedBy, a)
+				break
+			}
+		}
+	}
 
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
@@ -113,7 +187,10 @@ func GetPeopleAround(c *gin.Context) {
 		})
 		return
 	}
-	c.JSON(http.StatusOK, nearme)
+	c.JSON(http.StatusOK, gin.H{
+		"nearme":    nearme,
+		"swiped_by": swipedBy,
+	})
 }
 
 func UpdateUserDetails(c *gin.Context) {
