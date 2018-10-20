@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import RegisterP from "../presentational/Register";
-import { set_login } from "../actions/set_login";
+import { fetch_success } from "../actions/set_login";
 
 class Register extends Component {
   login = response => {
@@ -30,7 +30,7 @@ const mapStatetoProps = (state, props) => {
 const mapActionstoProps = (dispatch, props) => {
   return bindActionCreators(
     {
-      setLogin: set_login
+      setLogin: fetch_success
     },
     dispatch
   );

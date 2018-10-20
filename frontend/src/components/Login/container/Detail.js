@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { fetch_success } from "../actions/set_login";
+
 import DetailP from "../presentational/Detail";
 class Detail extends Component {
   constructor(props) {
@@ -25,9 +29,33 @@ class Detail extends Component {
   componentDidMount() {
     // TODO fetch list of interest and update state
   }
+
   render() {
-    return <DetailP interests={this.state.interests} />;
+    return (
+      <DetailP
+        setLogin={this.props.setLogin}
+        interests={this.state.interests}
+      />
+    );
   }
 }
 
-export default Detail;
+const mapStatetoProps = (state, props) => {
+  return {
+    ui: state.ui,
+    ...props
+  };
+};
+const mapActionstoProps = (dispatch, props) => {
+  return bindActionCreators(
+    {
+      setLogin: fetch_success
+    },
+    dispatch
+  );
+};
+
+export default connect(
+  mapStatetoProps,
+  mapActionstoProps
+)(Detail);

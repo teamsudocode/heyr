@@ -36,6 +36,7 @@ class Detail extends Component {
       bio: this.state.bio
     };
     console.log(payload);
+    this.props.setLogin();
   };
 
   renderListofTopics = () =>
