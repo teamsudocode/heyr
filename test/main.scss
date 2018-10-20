@@ -184,6 +184,7 @@ table {
     }
 }
 
+
 .main {
     padding: 1.5em;
 
@@ -254,6 +255,7 @@ table {
             display: flex;
             flex-direction: row;
             padding-bottom: 1.5em;
+
             input {
                 width: 66vw;
                 align-self: center;
@@ -384,4 +386,42 @@ hr {
     font-size: 14px;
     color: #666666;
 
+}
+
+.main {
+    .explore {
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            margin-bottom: 1.5em;
+        }
+
+        a{
+            color: #3B5998!important;
+            text-decoration: none;
+        }
+    }
+
+    .locations {
+        .item {
+            margin-bottom: 2em;
+            img {
+                width: 100%;
+                margin-bottom: 8px;
+            }
+            .title{
+                margin-bottom: 4px;
+            }
+            .distance {
+                font-family: "Nunito Sans";
+                font-size: 14px;
+                color: #FF0086;
+                letter-spacing: 0;
+                text-align: left;
+                display: inline-block;
+            }
+        }
+    }
 }

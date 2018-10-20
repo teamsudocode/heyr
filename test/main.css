@@ -345,4 +345,33 @@ hr {
   color: #666666;
 }
 
+.main .explore h1 {
+  margin-bottom: 10px;
+}
+.main .explore h2 {
+  margin-bottom: 1.5em;
+}
+.main .explore a {
+  color: #3B5998 !important;
+  text-decoration: none;
+}
+.main .locations .item {
+  margin-bottom: 2em;
+}
+.main .locations .item img {
+  width: 100%;
+  margin-bottom: 8px;
+}
+.main .locations .item .title {
+  margin-bottom: 4px;
+}
+.main .locations .item .distance {
+  font-family: "Nunito Sans";
+  font-size: 14px;
+  color: #FF0086;
+  letter-spacing: 0;
+  text-align: left;
+  display: inline-block;
+}
+
 /*# sourceMappingURL=main.css.map */
