@@ -35,7 +35,6 @@ const styles = css`
   align-items: center;
   padding:0 1.5em 1em 1.5em;
   max-height: 100vh;
-  overflow:hidden;
   .header{ 
     img{
       max-width: 100%;

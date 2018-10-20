@@ -3,24 +3,26 @@ import React, { Component } from "react";
 import Swipeable from "react-swipy";
 
 import Card from "./Card";
-import Button from "./Button";
+import AcceptBtn from "./acceptBtn";
+import RejectBtn from "./rejectBtn";
+import acceptIcon from "../../assets/accept.svg"
+import rejectIcon from "../../assets/reject.svg"
 
 const appStyles = {
-  height: "100%",
   display: "flex",
   flexDirection: "column",
-  width: "100%",
+  width: "80%",
   minHeight: "100vh",
   fontFamily: "sans-serif",
-  overflow: "hidden",
-  padding: 24,
+  margin: 0,
+  padding: 24
 };
 
 const wrapperStyles = { position: "relative", width: "100%", height: "350px" };
 const actionsStyles = {
   display: "flex",
   justifyContent: "space-around",
-  marginTop: 30,
+  marginTop: "-5%"
 };
 
 const headerStyles = {
@@ -42,7 +44,8 @@ const bodyStyles = {
 
 const linkStyles = {
   color: "#3B5998",
-  textDecoration: "none"
+  textDecoration: "none",
+  fontFamily: "Nunito Sans",
 }
 
 const dividerStyles = {
@@ -71,8 +74,8 @@ class MainCard extends Component {
               <Swipeable
                 buttons={({ right, left }) => (
                   <div style={actionsStyles}>
-                    <Button onClick={left}>Reject</Button>
-                    <Button onClick={right}>Accept</Button>
+                    <RejectBtn onClick={left}><img src={rejectIcon}/></RejectBtn>
+                    <AcceptBtn onClick={right}><img src={acceptIcon}/></AcceptBtn>
                   </div>
                 )}
                 onAfterSwipe={this.remove}

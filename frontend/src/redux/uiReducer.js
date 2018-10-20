@@ -1,6 +1,6 @@
 let initialState = {
-  isLogged: false,
-  userId: "",
+  isLogged: true,
+  userId: "something",
   active: "discover",
   newMessage: false
 };
