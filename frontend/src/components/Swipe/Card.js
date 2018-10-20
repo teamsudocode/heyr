@@ -26,7 +26,7 @@ const Card = ({ zIndex = 0, children }) => (
     <div className="content">
       <div className="dp">
         <img src={testImage} className="top"/>
-        <div className="bottom"/>
+        <img src={testImage} className="bottom"/>
       </div>
       <div className="label">I am a</div>
       <div className="title">Avid Trekker and Hobbyist Rapper</div>
@@ -60,6 +60,23 @@ const styles = css`
 
 .dp{
   margin-bottom:24px;
+  position: relative; left: 0; top: 0;
+  .top{
+    filter: blur(8px);
+    position: relative;
+		top: 0;
+    left: 0;
+    z-index:2
+  }
+  .bottom{
+    position: absolute;
+		top: 0px;
+		left: 0px;
+    height:104px;
+    width:104px;
+    border-radius:50%;
+    z-index: -1;
+  }
 }
 
 .label{
