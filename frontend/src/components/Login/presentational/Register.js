@@ -76,4 +76,7 @@ const styles = css`
     text-align: center;
     line-height:1.25em;
   }
+body{
+  overflow:hidden;
+}
 `;

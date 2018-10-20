@@ -6,15 +6,20 @@
 
 
 @font-face {
-  font-family: "ProductSans-Bold";
-  src: url("./assets/ProductSans-Bold.woff") format("woff"),
+  font-family: 'ProductSans-Bold';
+  src: url('./assets/product_sans_bold-webfont.woff2') format('woff2'),
+       url('./assets/product_sans_bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-  font-family: "ProductSans-Regular";
-  src: url("./assets/ProductSans-Regular.woff") format("woff"),
+  font-family: 'ProductSans-Regular';
+  src: url('./assets/product_sans_regular-webfont.woff2') format('woff2'),
+       url('./assets/product_sans_regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
-
 html,
 body,
 div,
@@ -146,6 +151,37 @@ table {
   border-spacing: 0;
 }
 
-body{
-  overflow:hidden;
+
+.heading{
+  font-family: "ProductSans-Bold";
+  font-size: 1.5em;
+  color: #FF0086;
+}
+
+.title{
+  font-family: "Nunito Sans";
+  font-weight: 700;
+  line-height:1.5em;
+  font-size: 1em;
+  color: #000000;
+}
+
+.body{
+  font-family: "Nunito Sans";
+  font-size: 14px;
+  color: #666666;
+}
+
+.button{
+  width: 100%;
+  background: #FF0086;
+  border-radius: 2px;
+  font-family: "ProductSans-Bold";
+  font-size: 18px;
+  color: #FFFFFF;
+  letter-spacing: 0.56px;
+  text-align: center;
+  padding:16px;
+  outline: none;
+  border: none;
 }
