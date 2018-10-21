@@ -398,8 +398,8 @@ hr {
             margin-bottom: 1.5em;
         }
 
-        a{
-            color: #3B5998!important;
+        a {
+            color: #3B5998 !important;
             text-decoration: none;
         }
     }
@@ -407,13 +407,16 @@ hr {
     .locations {
         .item {
             margin-bottom: 2em;
+
             img {
                 width: 100%;
                 margin-bottom: 8px;
             }
-            .title{
+
+            .title {
                 margin-bottom: 4px;
             }
+
             .distance {
                 font-family: "Nunito Sans";
                 font-size: 14px;
@@ -421,6 +424,66 @@ hr {
                 letter-spacing: 0;
                 text-align: left;
                 display: inline-block;
+            }
+        }
+    }
+}
+
+.main {
+    .modal {
+        .overlay {
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+        .window {
+            background-color: #fff;
+            position: absolute;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+            top: 15%;
+            padding: 24px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            h1,
+            h2 {
+                text-align: center;
+            }
+
+            img {
+                align-self: center;
+            }
+
+            h1 {
+                margin-top: 24px;
+                margin-bottom: 24px;
+                font-size: 40px;
+            }
+
+            h2 {
+                margin-bottom: 36px;
+            }
+
+            button {
+                font-family: "ProductSans-Bold";
+                font-size: 18px;
+                color: #FFFFFF;
+                letter-spacing: 0.56px;
+                width: 100%;
+                border: none;
+                padding: 16px;
+                text-align: center;
+                background: #FF0086;
             }
         }
     }
