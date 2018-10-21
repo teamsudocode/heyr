@@ -423,5 +423,8 @@ hr {
   text-align: center;
   background: #FF0086;
 }
+.main .modal .window button:focus {
+  outline: none;
+}
 
 /*# sourceMappingURL=main.css.map */

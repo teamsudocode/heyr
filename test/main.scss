@@ -484,6 +484,9 @@ hr {
                 padding: 16px;
                 text-align: center;
                 background: #FF0086;
+                &:focus{
+                    outline: none;
+                }
             }
         }
     }
