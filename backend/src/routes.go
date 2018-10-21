@@ -1,13 +1,13 @@
 package main
 
 import (
-	"github.com/gin-contrib/cors"
-	"github.com/gin-gonic/gin"
-	"gopkg.in/mgo.v2"
-	"gopkg.in/mgo.v2/bson"
 	"log"
 	"net/http"
 	"time"
+
+	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
+	"gopkg.in/mgo.v2/bson"
 )
 
 var DB *mgo.Database
@@ -158,7 +158,7 @@ func GetPeopleAround(c *gin.Context) {
 			"$near": bson.M{
 				"$geometry": bson.M{
 					"type":        "Point",
-					"coordinates": []float64{23.4, 83.2},
+					"coordinates": reqJson.Coordinates,
 				},
 				"$maxDistance": 100,
 			},
