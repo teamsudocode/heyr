@@ -60,12 +60,12 @@ func MarkSwipe(c *gin.Context) {
 		})
 		return
 	}
-	if _, there := Swipes[reqJson.UserID] {
+	if _, there := Swipes[reqJson.UserID]; there {
 		Swipes[reqJson.UserID] = append(Swipes[reqJson.UserID], reqJson.MarkFor)
 	} else {
 		Swipes[reqJson.UserID] = []string{reqJson.MarkFor}
 	}
-	
+
 	c.JSON(http.StatusOK, gin.H{"message": "Done"})
 }
 
