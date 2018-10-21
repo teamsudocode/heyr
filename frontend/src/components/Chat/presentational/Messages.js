@@ -6,7 +6,7 @@ class Messages extends Component {
   }
   renderCards = (element, i) => {
     let newitem = "";
-    if (i === 1) {
+    if (i === 0) {
       newitem = "new";
     } else {
       newitem = "";

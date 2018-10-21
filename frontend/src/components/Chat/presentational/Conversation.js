@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { css } from "emotion";
 import locationIcon from "../../../assets/icon.svg";
-import contact from "../../../assets/dp.png";
 
 import boyImg from "../../../assets/boy.png";
 import backImg from "../../../assets/back.svg";

@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import { css } from "emotion";
-import restaurant from "../../../assets/dunkin.png";
 class ExploreList extends Component {
   constructor(props) {
     super(props);
@@ -8,10 +7,10 @@ class ExploreList extends Component {
   renderCards = (element, i) => {
     return (
       <div className="item">
-        <img src={restaurant} />
-        <p className="title">Dunkin Donuts</p>
-        <p className="distance">750m away</p>
-        <span className="body"> - Terminal 4, 500 Terminal Dr</span>
+        <img src={element.src} />
+        <p className="title">{element.title}</p>
+        <p className="distance">{element.distance}</p>
+        <span className="body"> - {element.address}</span>
       </div>
     );
   };
@@ -35,6 +34,8 @@ class ExploreList extends Component {
 export default ExploreList;
 
 const style = css`
+margin-bottom:72px;
+overflow-y:scroll!important;
   h1 {
     margin-bottom: 10px;
   }

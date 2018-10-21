@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { css } from "emotion";
 import locationIcon from "../../../assets/icon.svg";
-import contact from "../../../assets/dp.png";
 class Connection extends Component {
   constructor(props) {
     super(props);
@@ -11,14 +10,14 @@ class Connection extends Component {
       <Fragment>
         <div className="item">
           <div className="display">
-            <img src={contact} />
+            <img src={element.img} />
           </div>
           <div className="info">
-            <h1 className="title">Jessica Fernandez</h1>
-            <h2>Pop Culure, Music, Hollywood</h2>
+            <h1 className="title">{element.name}</h1>
+            <h2>{element.interest }</h2>
             <h3>
               <img src={locationIcon} />
-              <span>Met at the London Subway Station</span>
+              <span>{element.location}</span>
             </h3>
           </div>
         </div>
