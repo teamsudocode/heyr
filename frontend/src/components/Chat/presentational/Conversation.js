@@ -48,10 +48,12 @@ class Conversation extends Component {
   receiveMessage = msg => {
     console.log(msg);
     msg = JSON.parse(msg.data);
+    console.log(this.state.messages);
     this.setState({ messages: [...this.state.messages, msg] });
   };
 
   sendMsg = () => {
+    console.log(this.state.messages);
     console.log("sending", this.state.currentInput);
     let msg = {
       from: { id: localStorage.getItem("user_id"), name: "himanshu" },
@@ -107,9 +109,7 @@ class Conversation extends Component {
         <hr />
 
         <div className="msg">
-          {this.state.messages
-            .slice(0, 2)
-            .map((msg, i) => this.renderCards(msg, i))}
+          {this.state.messages.map((msg, i) => this.renderCards(msg, i))}
         </div>
 
         <div className="control">
@@ -225,6 +225,7 @@ const style = css`
       flex-direction: row;
       justify-content: flex-end;
       margin-left: 1em;
+      margin-top: 1em;
 
       .msg {
         font-family: "Nunito Sans";

@@ -21,7 +21,7 @@ const cardStyles = {
   height: "100%"
 };
 
-const Card = ({ profilePic, people, zIndex = 0, children }) => {
+const Card = ({ people, zIndex = 0, children }) => {
   if (!people) {
     return <div className="heading">No More Results</div>;
   }
@@ -30,8 +30,8 @@ const Card = ({ profilePic, people, zIndex = 0, children }) => {
       <img src={cardBackground} className="bg" />
       <div className="content">
         <div className="dp">
-          <img src={profilePic} className="top" />
-          <img src={profilePic} className="bottom" />
+          <img src={people.profile_pic} className="top" />
+          <img src={people.profile_pic} className="bottom" />
         </div>
         <div className="label">I am a</div>
         <div className="title">{people.bio}</div>
