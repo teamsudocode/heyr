@@ -1,7 +1,7 @@
 import React from "react";
-import cardBackground from "../../assets/cardbg.svg"
-import testImage from "../../assets/test.png"
-import {css} from "emotion"
+import cardBackground from "../../assets/cardbg.svg";
+import testImage from "../../assets/test.png";
+import { css } from "emotion";
 const cardStyles = {
   background: "whitesmoke",
   borderRadius: 3,
@@ -20,80 +20,87 @@ const cardStyles = {
   marginLeft: "5%"
 };
 
-const Card = ({ zIndex = 0, children }) => (
-  <div style={{ ...cardStyles, zIndex }} className={styles}>
-    <img src={cardBackground} className="bg"/>
-    <div className="content">
-      <div className="dp">
-        <img src={testImage} className="top"/>
-        <img src={testImage} className="bottom"/>
+const Card = ({ people, zIndex = 0, children }) => {
+  if (!people) {
+    return <div>No more cards to show!</div>;
+  }
+  return (
+    <div style={{ ...cardStyles, zIndex }} className={styles}>
+      <img src={cardBackground} className="bg" />
+      <div className="content">
+        <div className="dp">
+          <img src={testImage} className="top" />
+          <img src={testImage} className="bottom" />
+        </div>
+        <div className="label">I am a</div>
+        <div className="title">{people.bio}</div>
+        <div className="label">and I would like to talk about</div>
+        <div className="special">{people.interests.join(", ")}</div>
+        <hr className="divider" />
       </div>
-      <div className="label">I am a</div>
-      <div className="title">Avid Trekker and Hobbyist Rapper</div>
-      <div className="label">and I would like to talk about</div>
-      <div className="special">Music, Cricket, Bollywood</div>
-      <hr className="divider"/>
     </div>
-  </div>
-);
+  );
+};
 
 export default Card;
 
 const styles = css`
-.bg{
-  position:absolute;
-  top:0;
-  z-index:-99;
-  width:100%;
-}
-.content{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top:32px
-}
-
-.title{
-  margin-bottom:24px;
-}
-
-.dp{
-  margin-bottom:24px;
-  position: relative; left: 0; top: 0;
-  .top{
-    filter: blur(8px);
-    position: relative;
-		top: 0;
-    left: 0;
-    z-index:2
-  }
-  .bottom{
+  .bg {
     position: absolute;
-		top: 0px;
-		left: 0px;
-    height:104px;
-    width:104px;
-    border-radius:50%;
-    z-index: -1;
+    top: 0;
+    z-index: -99;
+    width: 100%;
   }
-}
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 32px;
+  }
 
-.label{
-  font-family: "Nunito Sans";
-  font-size: 12px;
-  color: #CBCBCB;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-bottom:8px;
-}
+  .title {
+    margin-bottom: 24px;
+  }
 
-.special{
-  font-family: "Nunito Sans";
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 1.5em;
-  color: #FF0086;
-  letter-spacing: 0;
-}
-`
+  .dp {
+    margin-bottom: 24px;
+    position: relative;
+    left: 0;
+    top: 0;
+    .top {
+      filter: blur(8px);
+      position: relative;
+      top: 0;
+      left: 0;
+      z-index: 2;
+    }
+    .bottom {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      height: 104px;
+      width: 104px;
+      border-radius: 50%;
+      z-index: -1;
+    }
+  }
+
+  .label {
+    font-family: "Nunito Sans";
+    font-size: 12px;
+    color: #cbcbcb;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .special {
+    font-family: "Nunito Sans";
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.5em;
+    color: #ff0086;
+    letter-spacing: 0;
+  }
+`;

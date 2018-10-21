@@ -5,6 +5,7 @@ import Discover from "../Discover";
 import Explore from "../Explore";
 import Chat from "../Chat";
 import BottomNav from "../BottomNav";
+import Conversation from "../Chat/container/Conversation";
 
 export const history = createHistory();
 
@@ -20,6 +21,7 @@ class Index extends PureComponent {
             <Route exact path="/" component={Discover} />
             <Route exact path="/explore" component={Explore} />
             <Route exact path="/chat" component={Chat} />
+            <Route exact path="/conversation" component={Conversation} />
           </Switch>
           <BottomNav />
         </Fragment>

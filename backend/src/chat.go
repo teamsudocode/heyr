@@ -1,9 +1,10 @@
 package main
 
 import (
-	"github.com/gorilla/websocket"
 	"log"
 	"net/http"
+
+	"github.com/gorilla/websocket"
 )
 
 var clientToConn = make(map[string]*websocket.Conn)
@@ -49,7 +50,7 @@ func ChatHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println(msg.To, msg.From)
 		// msg.From, msg.To = msg.To, msg.From
 		// log.Println(msg.To, msg.From)
-		if other, ok := clientToConn[msg.From.ID]; ok {
+		if other, ok := clientToConn[msg.To.ID]; ok {
 			other.WriteJSON(&msg)
 		}
 

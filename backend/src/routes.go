@@ -14,7 +14,7 @@ import (
 var DB *mgo.Database
 
 // swipes made by a user
-var Swipes map[string]([]string){}
+var Swipes map[string]([]string)
 
 func NewRouter() *gin.Engine {
 	router := gin.Default()
@@ -133,6 +133,7 @@ func GetPeopleAround(c *gin.Context) {
 	me := User{}
 	err := DB.C("users").Find(bson.M{"id": reqJson.UserID}).One(&me)
 	if err == mgo.ErrNotFound {
+		log.Println("error", err)
 		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
 			"message": "User not found",
 		})
@@ -159,6 +160,7 @@ func GetPeopleAround(c *gin.Context) {
 
 	// get people around me
 	nearme := []User{}
+	log.Println(reqJson)
 	err = DB.C("users").Find(bson.M{
 		"last_location.location": bson.M{
 			"$near": bson.M{
@@ -175,6 +177,9 @@ func GetPeopleAround(c *gin.Context) {
 		// TODO: filter by last_location updated at time
 		// },
 	}).All(&nearme)
+	err = DB.C("users").Find(nil).All(&nearme)
+
+	log.Println("nearme", nearme)
 
 	// get list of people swiped by
 	swipedBy := []string{}

@@ -7,14 +7,21 @@ class Index extends Component {
     this.state = {
       people: []
     };
+    this.getPeopleLoop = null;
   }
 
   componentDidMount() {
     if ("geolocation" in navigator) {
-      setInterval(() => {
-        this.getPeople();
-      }, 100);
+      setTimeout(this.getPeople, 1000);
+      this.getPeople();
+      // this.getPeopleLoop = setInterval(() => {
+      //   this.getPeople();
+      // }, 1000);
     }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.getPeopleLoop);
   }
 
   getPeople = async () => {
@@ -31,7 +38,10 @@ class Index extends Component {
       axios
         .post(`${process.env.REACT_APP_URL}/api/people_around`, body)
         .then(response => {
-          this.setState({ people: response.data.nearme });
+          this.setState({
+            people: response.data.nearme,
+            swipedBy: response.data.swiped_by
+          });
         })
         .catch(function(error) {
           console.log(error);
@@ -48,9 +58,10 @@ class Index extends Component {
   };
 
   render() {
+    console.log("inside discover", this.state.people);
     return (
       <div>
-        <Swipe people={this.state.people} />
+        <Swipe people={this.state.people} swipedBy={this.state.swipedBy} />
       </div>
     );
   }

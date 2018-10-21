@@ -1,14 +1,16 @@
 package main
 
 import (
-	"gopkg.in/mgo.v2"
 	"log"
+	"os"
+
+	mgo "gopkg.in/mgo.v2"
 )
 
 func main() {
 	router := NewRouter()
 
-	session, err := mgo.Dial("mongodb://localhost:27017")
+	session, err := mgo.Dial(os.Getenv("DB_URL"))
 	if err != nil {
 		log.Fatal(err)
 	}
