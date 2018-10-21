@@ -7,6 +7,8 @@ import boyImg from "../../../assets/boy.png";
 import backImg from "../../../assets/back.svg";
 import sendImg from "../../../assets/send.svg";
 
+import { history } from "../../Home";
+
 class Conversation extends Component {
   constructor(props) {
     super(props);
@@ -91,9 +93,9 @@ class Conversation extends Component {
     return (
       <div className={style}>
         <div className="info">
-          <div className="back">
+          <button className="back" onClick={() => history.push("/")}>
             <img src={backImg} />
-          </div>
+          </button>
           <div className="about">
             <h1 className="heading">{this.state.chattingWith.name}</h1>
             <h2 className="body">

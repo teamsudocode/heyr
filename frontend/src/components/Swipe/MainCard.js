@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import Swipeable from "react-swipy";
+import { css } from "emotion";
 import axios from "axios";
 
 import Card from "./Card";
@@ -8,7 +9,69 @@ import AcceptBtn from "./acceptBtn";
 import RejectBtn from "./rejectBtn";
 import acceptIcon from "../../assets/accept.svg";
 import rejectIcon from "../../assets/reject.svg";
+import modalImg from "../../assets/match.png";
 import { history } from "../Home";
+
+const modalCss = css`
+  .overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+  }
+
+  .window {
+    background-color: #fff;
+    position: absolute;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    top: 15%;
+    padding: 24px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h1,
+    h2 {
+      text-align: center;
+    }
+
+    img {
+      align-self: center;
+    }
+
+    h1 {
+      margin-top: 24px;
+      margin-bottom: 24px;
+      font-size: 40px;
+    }
+
+    h2 {
+      margin-bottom: 36px;
+    }
+
+    button {
+      font-family: "ProductSans-Bold";
+      font-size: 18px;
+      color: #ffffff;
+      letter-spacing: 0.56px;
+      width: 100%;
+      border: none;
+      padding: 16px;
+      text-align: center;
+      background: #ff0086;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+`;
 
 const appStyles = {
   display: "flex",
@@ -24,7 +87,7 @@ const wrapperStyles = { position: "relative", width: "100%", height: "350px" };
 const actionsStyles = {
   display: "flex",
   justifyContent: "space-around",
-  marginTop: "-5%"
+  marginTop: "6%"
 };
 
 const headerStyles = {
@@ -58,7 +121,8 @@ class MainCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      people: []
+      people: [],
+      showModal: false
     };
   }
   componentWillReceiveProps() {
@@ -69,7 +133,7 @@ class MainCard extends Component {
   };
 
   onSwipe = direction => {
-    console.log(direction);
+    console.log(direction, this.state.people[0]);
     let approve = direction === "right";
     if (!approve) return;
     let personSwiped = this.state.people[0];
@@ -92,19 +156,36 @@ class MainCard extends Component {
     } else {
       console.log("Forced match");
     }
-    // TODO flash it's a match
-
-    // TODO move to conversation
     localStorage.setItem("chattingWith", JSON.stringify(personSwiped));
-    history.push("/conversation");
+    this.setState({ showModal: true });
   };
 
   render() {
+    if (this.state.showModal) {
+      return (
+        <div className={modalCss}>
+          <div className="window">
+            <img src={modalImg} />
+            <h1 className="heading">It's a Match</h1>
+            <h2 className="title">
+              Seems like you and James share the same interests. Let the
+              conversations flow.
+            </h2>
+            <button onClick={() => history.push("/conversation")}>
+              Start Conversation
+            </button>
+          </div>
+          <div className="overlay" />
+        </div>
+      );
+    }
+
     const { people } = this.state;
     console.log("inside maincard", people);
+    let user = JSON.parse(localStorage.getItem("user"));
     return (
       <div style={appStyles}>
-        <h1 style={headerStyles}>Hi Abhishek</h1>
+        <h1 style={headerStyles}>Hi {user.first_name}</h1>
         <h2 style={bodyStyles}>
           Welcome to{" "}
           <a href="" style={linkStyles}>
@@ -129,12 +210,13 @@ class MainCard extends Component {
                 onAfterSwipe={this.remove}
                 onSwipe={this.onSwipe}
               >
-                <Card people={people[0]} />
+                <Card profilePic={user.profile_pic} people={people[0]} />
               </Swipeable>
               {people.length > 1 && <Card zIndex={-1} people={people[1]} />}
             </div>
           )}
-          {people.length <= 1 && <Card zIndex={-2} people={null} />}
+
+          {/* {people.length <= 1 && <Card zIndex={-2} people={null} />} */}
         </div>
       </div>
     );

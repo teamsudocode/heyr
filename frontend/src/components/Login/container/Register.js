@@ -7,7 +7,7 @@ import { fetch_success } from "../actions/set_login";
 
 class Register extends Component {
   login = response => {
-    console.log(process.env.REACT_APP_URL)
+    console.log(process.env.REACT_APP_URL);
     axios
       .post(`${process.env.REACT_APP_URL}/api/login`, {
         token: response.accessToken,
@@ -15,6 +15,7 @@ class Register extends Component {
       })
       .then(response => {
         localStorage.setItem("user_id", response.data.user.id);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
         let newUser = response.data.exists;
         if (!newUser) {
           this.props.navToDetails();

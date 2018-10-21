@@ -17,20 +17,21 @@ const cardStyles = {
   background: "#FFFFFF",
   boxShadow: "0 3px 6px 0 rgba(199,199,199,0.50)",
   overflow: "hidden",
-  marginLeft: "5%"
+  marginLeft: "5%",
+  height: "100%"
 };
 
-const Card = ({ people, zIndex = 0, children }) => {
+const Card = ({ profilePic, people, zIndex = 0, children }) => {
   if (!people) {
-    return <div>No more cards to show!</div>;
+    return <div className="heading">No More Results</div>;
   }
   return (
     <div style={{ ...cardStyles, zIndex }} className={styles}>
       <img src={cardBackground} className="bg" />
       <div className="content">
         <div className="dp">
-          <img src={testImage} className="top" />
-          <img src={testImage} className="bottom" />
+          <img src={profilePic} className="top" />
+          <img src={profilePic} className="bottom" />
         </div>
         <div className="label">I am a</div>
         <div className="title">{people.bio}</div>
@@ -73,6 +74,10 @@ const styles = css`
       position: relative;
       top: 0;
       left: 0;
+      height: 100px;
+      width: 100px;
+      border: 1px solid white;
+      border-radius: 50%;
       z-index: 2;
     }
     .bottom {
@@ -102,5 +107,6 @@ const styles = css`
     line-height: 1.5em;
     color: #ff0086;
     letter-spacing: 0;
+    text-align: center;
   }
 `;
